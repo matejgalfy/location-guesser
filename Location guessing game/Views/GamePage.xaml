@@ -15,20 +15,24 @@
             <Grid x:Name="MapGuessGrid" 
                   VerticalOptions="End" 
                   HorizontalOptions="End" 
-                  Margin="20" 
-                  RowDefinitions="*, Auto"
-                  ColumnDefinitions="200">
+                  Margin="0, 0, 20, 10" 
+                  RowDefinitions="*, Auto">
 
-                <Button Grid.Row="1"
+                <Button x:Name="GuessButton"
+                        Style="{StaticResource GreyedOutButton}"
+                        Grid.Row="1"
                         Text="Guess!"
                         Command="{Binding GuessCommand}"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
+                        WidthRequest="200"
                         FontSize="20"
                         Padding="40, 15"
                         Margin="10"/>
                 <Border Grid.Column="0" 
                         x:Name="MapContainer" 
+                        WidthRequest="200" 
+                        HeightRequest="200" 
                         StrokeShape="RoundRectangle 10" 
                         StrokeThickness="2">
                     <Grid>

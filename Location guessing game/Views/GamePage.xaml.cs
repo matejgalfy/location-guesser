@@ -26,7 +26,7 @@ public partial class GamePage : ContentPage
         SetupMap(Map.Map);
     }
 
-    private static void SetupMap(Mapsui.Map map)
+    private void SetupMap(Mapsui.Map map)
     {
         var features = new List<Mapsui.IFeature>();
 
@@ -34,6 +34,11 @@ public partial class GamePage : ContentPage
         map.Layers.Add(CreatePinLayer(features));
         map.Tapped += (m, e) =>
         {
+            if (Application.Current.Resources.TryGetValue("NormalButton", out var style))
+            {
+                GuessButton.Style = (Microsoft.Maui.Controls.Style)style;
+            }
+
             var layer = e.Map.Layers.OfType<MemoryLayer>().First();
 
             // Delete previously placed pins
@@ -65,15 +70,17 @@ public partial class GamePage : ContentPage
     {
         _isMapExpanded = !_isMapExpanded;
 
-        if (_isMapExpanded) // zvacsit
+        if (_isMapExpanded)
         {
-            MapGuessGrid.ColumnDefinitions[0].Width= new GridLength(500);
-            MapGuessGrid.RowDefinitions[0].Height= new GridLength(450);
+            GuessButton.WidthRequest = 500;
+            MapContainer.WidthRequest = 500;
+            MapContainer.HeightRequest = 450;
         }
         else
         {
-            MapGuessGrid.ColumnDefinitions[0].Width = new GridLength(200);
-            MapGuessGrid.RowDefinitions[0].Height = new GridLength(200);
+            GuessButton.WidthRequest = 200;
+            MapContainer.WidthRequest = 200;
+            MapContainer.HeightRequest = 200;
         }
     }
 }
