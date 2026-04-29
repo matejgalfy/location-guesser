@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Location_guessing_game.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Location_guessing_game"
+    xmlns:views="clr-namespace:Location_guessing_game.Views"
+    Title="Location_guessing_game">
+
+    <ShellContent
+        Title="Main Page"
+        ContentTemplate="{DataTemplate views:MainPage}"
+        Route="mainpage" />
+
+</Shell>
