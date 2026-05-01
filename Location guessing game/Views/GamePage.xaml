@@ -23,6 +23,7 @@
                         Grid.Row="1"
                         Text="Guess!"
                         Command="{Binding GuessCommand}"
+                        Clicked="GuessButton_Clicked"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
                         WidthRequest="200"
@@ -37,11 +38,12 @@
                         StrokeThickness="2">
                     <Grid>
                         <mapsui:MapControl  x:Name="Map"
-                                            BackgroundColor="White" />
+                                            BackgroundColor="White"/>
 
                         <Button x:Name="ChangeMapSizeButton"
                                 Text="⤢" 
                                 Clicked="ToggleMapSize_Clicked"
+                                Style="{StaticResource NormalButton}"
                                 WidthRequest="40" 
                                 HeightRequest="40"
                                 HorizontalOptions="Start" 
@@ -53,6 +55,8 @@
                     </Grid>
                 </Border>
             </Grid>
+
+            <!-- Score panel -->
         </Grid>
     </Grid>
 </ContentPage>

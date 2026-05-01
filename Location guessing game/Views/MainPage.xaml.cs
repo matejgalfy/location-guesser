@@ -4,9 +4,9 @@ namespace Location_guessing_game.Views;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage(MainViewModel mainViewModel)
 	{
 		InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = mainViewModel;
     }
 }

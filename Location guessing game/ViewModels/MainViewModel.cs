@@ -1,17 +1,34 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Location_guessing_game.Models;
+using Location_guessing_game.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace Location_guessing_game.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        [ObservableProperty]
+        public partial ImageList? SelectedImageList { get; set; }
+
+        private readonly ListService _listService;
+
+        public MainViewModel(ListService listService)
+        {
+            _listService = listService;
+            SelectedImageList = listService.AvailableLists[0];
+        }
+
         [RelayCommand]
         async Task StartGameAsync()
         {
-            await Shell.Current.GoToAsync("gamepage");
+            if (SelectedImageList is not null)
+            {
+                _listService.SelectedList = SelectedImageList;
+                await Shell.Current.GoToAsync("gamepage");
+            }
         }
     }
 }

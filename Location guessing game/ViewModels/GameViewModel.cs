@@ -4,30 +4,41 @@ using System.Collections.Generic;
 using System.Text;
 using CommunityToolkit.Mvvm.Input;
 using Location_guessing_game.Models;
+using Location_guessing_game.Services;
 
 namespace Location_guessing_game.ViewModels
 {
     public partial class GameViewModel : ObservableObject
     {
+        public ImageList CurrentImageList { get; set; }
+
         [ObservableProperty]
         public partial ImageLocation CurrentImage { get; set; }
 
+        private ListService _listService;
+        private bool _guessed;
 
-        public GameViewModel()
+        public GameViewModel(ListService listService)
         {
-            CurrentImage = new()
-            {
-                ImageSource = "https://www.visitaustria.info/en/wp-content/uploads/sites/171/bratislava-hd.jpg",
-                Longitude = 48.148598,
-                Latitude = 17.107748
-            };
+            _listService = listService;
+            GameLoop();
         }
 
+        private void GameLoop()
+        {
+            CurrentImage = _listService.SelectedList.Images[1];
+        }
 
         [RelayCommand]
         async Task GoBackAsync()
         {
             await Shell.Current.GoToAsync("..");
+        }
+
+        [RelayCommand]
+        void Guess()
+        {
+            
         }
     }
 }
