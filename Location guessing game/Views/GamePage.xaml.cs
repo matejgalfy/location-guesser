@@ -160,7 +160,7 @@ public partial class GamePage : ContentPage
 
             await Task.Delay(100);
             Map.Map.Navigator.ZoomIn();
-            // Map.Map.Navigator.CenterOn(tvoj_bod);
+             //Map.Map.Navigator.CenterOn(); TODO, center on the middle point
             _guessed = true;
 
             var sphericCoords = Mapsui.Projections.SphericalMercator.FromLonLat(
