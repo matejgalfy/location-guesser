@@ -4,11 +4,13 @@
              x:Class="Location_guessing_game.Views.GamePage"
              Title="GamePage"
              xmlns:mapsui="clr-namespace:Mapsui.UI.Maui;assembly=Mapsui.UI.Maui">
+
     <Grid RowDefinitions="Auto, *">
         <Button Grid.Row="0" 
                 Text="Go Back" 
                 Command="{Binding GoBackCommand}" 
                 HorizontalOptions="Center" />
+
         <Grid Grid.Row="1">
             <Image Source="{Binding CurrentImage.ImageSource}" Aspect="AspectFill" />
 
@@ -18,19 +20,7 @@
                   Margin="0, 0, 20, 10" 
                   RowDefinitions="*, Auto">
 
-                <Button x:Name="GuessButton"
-                        Style="{StaticResource GreyedOutButton}"
-                        Grid.Row="1"
-                        Text="Guess!"
-                        Command="{Binding GuessCommand}"
-                        Clicked="GuessButton_Clicked"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="200"
-                        FontSize="20"
-                        Padding="40, 15"
-                        Margin="10"/>
-                <Border Grid.Column="0" 
+                <Border Grid.Row="0" 
                         x:Name="MapContainer" 
                         WidthRequest="200" 
                         HeightRequest="200" 
@@ -54,9 +44,55 @@
                                 Opacity="0.8" />
                     </Grid>
                 </Border>
+
+                <Button x:Name="GuessButton"
+                        Style="{StaticResource GreyedOutButton}"
+                        Grid.Row="1"
+                        Text="Guess!"
+                        Clicked="GuessButton_Clicked"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="200"
+                        FontSize="20"
+                        Padding="40, 15"
+                        Margin="10"/>
             </Grid>
 
-            <!-- Score panel -->
+            <Grid x:Name="ScorePanel"
+                  IsVisible="False"
+                  BackgroundColor="#E6222222" 
+                  HeightRequest="120"
+                  VerticalOptions="End"
+                  ZIndex="5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="{Binding DistanceMessage}" FontSize="32" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="FROM LOCATION" FontSize="12" TextColor="LightGray" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <Button x:Name="NextButton"
+                        Grid.Column="1"
+                        Text="NEXT"
+                        Clicked="NextButton_Clicked"
+                        BackgroundColor="#77C83F"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="25"
+                        WidthRequest="150" HeightRequest="50"
+                        VerticalOptions="Center" />
+
+                <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="{Binding ScoreMessage}" FontSize="32" FontAttributes="Bold" TextColor="White" />
+                    <Label Text="POINTS" FontSize="12" TextColor="LightGray" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+
         </Grid>
     </Grid>
 </ContentPage>

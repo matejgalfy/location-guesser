@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Mapsui;
 using Mapsui.Layers;
 using Mapsui.Nts;
 using Mapsui.Styles;
 using NetTopologySuite.Geometries;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Brush = Mapsui.Styles.Brush;
 using Color = Mapsui.Styles.Color;
 
@@ -26,6 +27,7 @@ namespace Location_guessing_game.Helpers
             };
         }
 
+        /* Places guess pin (removes the old one, adds the new one) */
         public void PlaceGuessPin(double x, double y)
         {
             _features.Clear();
@@ -59,8 +61,9 @@ namespace Location_guessing_game.Helpers
             RefreshLayer();
         }
 
-        public void ClearMap()
+        public void ClearMap(Mapsui.Map map)
         {
+            map.Navigator.ZoomOut();
             _features.Clear();
             RefreshLayer();
         }
