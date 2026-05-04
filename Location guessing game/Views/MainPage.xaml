@@ -9,5 +9,9 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             Command="{Binding StartGameCommand}"/>
+        <Button
+            Text="Select list of locations"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
     </VerticalStackLayout>
 </ContentPage>
