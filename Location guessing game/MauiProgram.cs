@@ -1,4 +1,5 @@
-﻿using Location_guessing_game.Services;
+﻿using DAL;
+using Location_guessing_game.Models.Services;
 using Location_guessing_game.ViewModels;
 using Location_guessing_game.Views;
 using Microsoft.Extensions.Logging;
@@ -20,17 +21,26 @@ namespace Location_guessing_game
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddSingleton<ListService>();
+            builder.Services.AddSingleton<UserService>();
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<GameViewModel>();
             builder.Services.AddTransient<GamePage>();
-
+            builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<RegisterPage>();
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<LoginPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            using var db = new GameDbContext();
+            db.Database.EnsureCreated();
+
+            return app;
         }
     }
 }

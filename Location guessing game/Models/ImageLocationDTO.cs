@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Location_guessing_game.Models
 {
-    public class ImageLocation
+    public class ImageLocationDTO
     {
         public string? Name { get; set; }
         public string ImageSource { get; set; }

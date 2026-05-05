@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Location_guessing_game.Models;
-using Location_guessing_game.Services;
 using Microsoft.Maui.Devices.Sensors;
 using System.Threading.Tasks;
+using Location_guessing_game.Models.Services;
 
 namespace Location_guessing_game.ViewModels;
 
@@ -14,7 +14,7 @@ public partial class GameViewModel : ObservableObject
     private bool _finished = false;
 
     [ObservableProperty]
-    public partial ImageLocation CurrentImage { get; set; }
+    public partial ImageLocationDTO CurrentImage { get; set; }
 
     [ObservableProperty]
     public partial bool HasPlacedPin { get; set; }
@@ -42,9 +42,9 @@ public partial class GameViewModel : ObservableObject
 
     private void LoadImage()
     {
-        if (_currentImageIndex < _listService.SelectedList.Images.Count)
+        if (_currentImageIndex < _listService.SelectedListDto.Images.Count)
         {
-            CurrentImage = _listService.SelectedList.Images[_currentImageIndex];
+            CurrentImage = _listService.SelectedListDto.Images[_currentImageIndex];
             HasPlacedPin = false;
             IsGuessed = false;
         }
@@ -78,7 +78,7 @@ public partial class GameViewModel : ObservableObject
     {
         ++_currentImageIndex;
 
-        if (_currentImageIndex < _listService.SelectedList.Images.Count)
+        if (_currentImageIndex < _listService.SelectedListDto.Images.Count)
         {
             LoadImage();
             return true;

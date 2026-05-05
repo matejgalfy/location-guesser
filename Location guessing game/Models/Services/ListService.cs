@@ -1,40 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Location_guessing_game.Models;
-
-namespace Location_guessing_game.Services
+﻿namespace Location_guessing_game.Models.Services
 {
     public class ListService
     {
         public ListService()
         {
-            SelectedList = AvailableLists[0];
+            SelectedListDto = AvailableLists[0];
         }
         
-        public List<ImageList> AvailableLists { get; private set; } = new()
+        public List<ImageListDTO> AvailableLists { get; private set; } = new()
         {
 
-            new ImageList()
+            new ImageListDTO()
             {
                 Name = "Slovak cities",
                 Images = 
                 [
-                    new ImageLocation
+                    new ImageLocationDTO
                     {
                         Name = "Bratislava",
                         ImageSource = "https://www.visitaustria.info/en/wp-content/uploads/sites/171/bratislava-hd.jpg",
                         Latitude = 48.148598,
                         Longitude = 17.107748
                     },
-                    new ImageLocation
+                    new ImageLocationDTO
                     {
                         Name = "Banská Bystrica",
                         ImageSource = "https://www.slovaklines.sk/wp-content/uploads/2023/10/banska-bystrica.full_.jpg",
                         Latitude = 48.738611,
                         Longitude = 19.156944
                     },
-                    new ImageLocation
+                    new ImageLocationDTO
                     {
                         Name = "Trebišov",
                         ImageSource = "https://www.tourismato.cz/foto/bazilika-327831.jpg",
@@ -46,7 +41,7 @@ namespace Location_guessing_game.Services
             }
         };
 
-        public ImageList SelectedList { get; set; }
+        public ImageListDTO SelectedListDto { get; set; }
 
     }
 }

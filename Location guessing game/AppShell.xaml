@@ -8,8 +8,8 @@
     Title="Location_guessing_game">
 
     <ShellContent
-        Title="Main Page"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="mainpage" />
+        Title="Login Page"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="loginpage" />
 
 </Shell>
