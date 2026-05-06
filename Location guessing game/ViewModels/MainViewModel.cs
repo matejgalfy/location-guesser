@@ -18,7 +18,7 @@ namespace Location_guessing_game.ViewModels
         public MainViewModel(ListService listService)
         {
             _listService = listService;
-            SelectedImageList = listService.AvailableLists[0];
+            SelectedImageList = listService.SelectedListDto;
         }
 
         [RelayCommand]
@@ -35,6 +35,12 @@ namespace Location_guessing_game.ViewModels
         async Task LogoutAsync()
         {
             await Shell.Current.GoToAsync("//loginpage");
+        }
+
+        [RelayCommand]
+        async Task GoToSelectionAsync()
+        {
+            await Shell.Current.GoToAsync("selectlistpage");
         }
     }
 }

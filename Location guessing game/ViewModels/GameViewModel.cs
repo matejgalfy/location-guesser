@@ -12,6 +12,7 @@ public partial class GameViewModel : ObservableObject
     private readonly ListService _listService;
     private int _currentImageIndex = 0;
     private bool _finished = false;
+    private int _totalScore = 0;
 
     [ObservableProperty]
     public partial ImageLocationDTO CurrentImage { get; set; }

@@ -14,7 +14,13 @@ namespace DAL
         public DbSet<UserListScore> UserListScores { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=game.db");
+        {
+            var folder = Environment.SpecialFolder.LocalApplicationData;
+            var path = Environment.GetFolderPath(folder);
+            string dbPath = Path.Join(path, "game.db");
+
+            options.UseSqlite("Data Source=game.db");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +29,11 @@ namespace DAL
                 {
                     Id = 1,
                     Name = "Slovak cities"
+                },
+                new ImageList
+                {
+                    Id = 2,
+                    Name = "Czech cities"
                 }
             );
 
@@ -55,6 +66,38 @@ namespace DAL
                     Longitude = 21.716667
                 }
             );
+
+            modelBuilder.Entity<ImageLocation>().HasData(
+                new ImageLocation
+                {
+                    Id = 4,
+                    ImageListId = 2,
+                    Name = "Náchod",
+                    ImageSource = "nachod.png",
+                    Latitude = 50.403216305911826,
+                    Longitude = 16.144046224473847
+                },
+                new ImageLocation
+                {
+                    Id = 5,
+                    ImageListId = 2,
+                    Name = "Brno",
+                    ImageSource = "brno_zelnak.jpg",
+                    Latitude = 49.1923929502919,
+                    Longitude = 16.608907125934817
+                },
+                new ImageLocation
+                {
+                    Id = 6,
+                    ImageListId = 2,
+                    Name = "České Budějovice",
+                    ImageSource = "cb.jpg",
+                    Latitude = 48.97451023307394,
+                    Longitude = 14.474957897251802
+                }
+            );
+
+
         }
 
 

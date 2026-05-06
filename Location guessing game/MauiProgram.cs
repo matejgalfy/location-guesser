@@ -30,6 +30,8 @@ namespace Location_guessing_game
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<ListSelectViewModel>();
+            builder.Services.AddTransient<ListSelectPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
