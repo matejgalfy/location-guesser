@@ -9,6 +9,8 @@ namespace Location_guessing_game.Models.Services
 {
     public class UserService
     {
+        public UserDTO CurrentUser { get; private set; }
+
         public async Task<(bool IsSuccess, string ErrorMessage)> CreateUserAsync(UserDTO user)
         {
             await using var db = new GameDbContext();
@@ -43,7 +45,35 @@ namespace Location_guessing_game.Models.Services
                 return false;
 
             bool isPasswordCorrect = BCrypt.Net.BCrypt.Verify(userDto.Password, userFromDb.PasswordHash);
+
+            if (isPasswordCorrect)
+            {
+                CurrentUser = new UserDTO
+                {
+                    Id = userFromDb.Id,
+                    Name = userFromDb.Name
+                };
+                await SecureStorage.Default.SetAsync("user_session", userFromDb.Id.ToString());
+            }
+
             return isPasswordCorrect;
+        }
+
+        public void Logout()
+        {
+            CurrentUser = null;
+            SecureStorage.Default.Remove("user_session");
+        }
+
+        public async Task<bool> TryRestoreSessionAsync()
+        {
+            string savedId = await SecureStorage.Default.GetAsync("user_session");
+            if (savedId != null)
+            {
+                CurrentUser = new UserDTO { Id = int.Parse(savedId) };
+                return true;
+            }
+            return false;
         }
     }
 }

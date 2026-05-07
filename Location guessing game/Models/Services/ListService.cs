@@ -21,6 +21,7 @@ namespace Location_guessing_game.Models.Services
             {
                 var dto = new ImageListDTO
                 {
+                    Id = list.Id,
                     Name = list.Name,
                     Images = new List<ImageLocationDTO>()
                 };

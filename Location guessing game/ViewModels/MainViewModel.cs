@@ -14,10 +14,12 @@ namespace Location_guessing_game.ViewModels
         public partial ImageListDTO? SelectedImageList { get; set; }
 
         private readonly ListService _listService;
+        private readonly UserService _userService;
 
-        public MainViewModel(ListService listService)
+        public MainViewModel(ListService listService, UserService userService)
         {
             _listService = listService;
+            _userService = userService;
             SelectedImageList = listService.SelectedListDto;
         }
 
@@ -29,11 +31,18 @@ namespace Location_guessing_game.ViewModels
                 _listService.SelectedListDto = SelectedImageList;
                 await Shell.Current.GoToAsync("gamepage");
             }
+            else
+            {
+                await Shell.Current.DisplayAlertAsync("Alert", "Please select a location list", "OK");
+            }
         }
 
         [RelayCommand]
         async Task LogoutAsync()
         {
+            _userService.Logout();
+            SelectedImageList = null;
+            _listService.SelectedListDto = null;
             await Shell.Current.GoToAsync("//loginpage");
         }
 

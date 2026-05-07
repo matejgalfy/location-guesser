@@ -10,6 +10,9 @@ namespace Location_guessing_game.ViewModels;
 public partial class GameViewModel : ObservableObject
 {
     private readonly ListService _listService;
+    private readonly ScoreService _scoreService;
+    private readonly UserService _userService;
+
     private int _currentImageIndex = 0;
     private bool _finished = false;
     private int _totalScore = 0;
@@ -29,9 +32,11 @@ public partial class GameViewModel : ObservableObject
     [ObservableProperty]
     public partial string ScoreMessage { get; set; }
 
-    public GameViewModel(ListService listService)
+    public GameViewModel(ListService listService, ScoreService scoreService, UserService userService)
     {
         _listService = listService;
+        _scoreService = scoreService;
+        _userService = userService;
         StartGame();
     }
 
@@ -49,11 +54,6 @@ public partial class GameViewModel : ObservableObject
             HasPlacedPin = false;
             IsGuessed = false;
         }
-        else
-        { 
-            // TODO 
-            DistanceMessage = "Koniec hry!";
-        }
     }
 
     public void CalculateScore(double guessLon, double guessLat)
@@ -63,16 +63,15 @@ public partial class GameViewModel : ObservableObject
         Location guessLocation = new Location(guessLat, guessLon);
         Location realLocation = new Location(CurrentImage.Latitude, CurrentImage.Longitude);
 
-        // Výpočet vzdialenosti v kilometroch
         double distanceKm = Location.CalculateDistance(guessLocation, realLocation, DistanceUnits.Kilometers);
 
         DistanceMessage = $"{Math.Round(distanceKm)} km";
 
-        // TODO Maybe edit scoring system
         int score = 5000 - (int)(distanceKm * 2);
         if (score < 0) 
             score = 0;
         ScoreMessage = score.ToString();
+        _totalScore += score;
     }
 
     public bool TryLoadNextRound()
@@ -86,10 +85,14 @@ public partial class GameViewModel : ObservableObject
         }
 
         DistanceMessage = "End of game";
-        ScoreMessage = "";
+        ScoreMessage = _totalScore.ToString();
+        _scoreService.SaveScoreAsync(new SaveScoreDTO()
+        {
+            ImageListId = _listService.SelectedListDto.Id,
+            Score = _totalScore,
+            UserId = _userService.CurrentUser.Id
+        });
         return false;
-        
-
     }
 
     [RelayCommand]

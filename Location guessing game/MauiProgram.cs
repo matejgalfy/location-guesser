@@ -22,6 +22,7 @@ namespace Location_guessing_game
                 });
             builder.Services.AddSingleton<ListService>();
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddTransient<ScoreService>();
             builder.Services.AddTransient<MainViewModel>();
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<GameViewModel>();
@@ -32,6 +33,9 @@ namespace Location_guessing_game
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<ListSelectViewModel>();
             builder.Services.AddTransient<ListSelectPage>();
+            builder.Services.AddTransient<ListLeaderboardViewModel>();
+            builder.Services.AddTransient<ListLeaderboardPage>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

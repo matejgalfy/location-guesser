@@ -73,7 +73,7 @@
 
                 <VerticalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
                     <Label Text="{Binding DistanceMessage}" FontSize="32" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="FROM LOCATION" FontSize="12" TextColor="LightGray" HorizontalOptions="Center"/>
+                    <Label x:Name="FromLocationLabel" Text="FROM LOCATION" FontSize="12" TextColor="LightGray" HorizontalOptions="Center"/>
                 </VerticalStackLayout>
 
                 <Button x:Name="NextButton"
@@ -89,7 +89,7 @@
 
                 <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
                     <Label Text="{Binding ScoreMessage}" FontSize="32" FontAttributes="Bold" TextColor="White" />
-                    <Label Text="POINTS" FontSize="12" TextColor="LightGray" HorizontalOptions="Center"/>
+                    <Label x:Name="PointsLabel" Text="POINTS" FontSize="12" TextColor="LightGray" HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Grid>
 

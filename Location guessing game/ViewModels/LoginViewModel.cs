@@ -26,6 +26,18 @@ namespace Location_guessing_game.ViewModels
         public LoginViewModel(UserService userService)
         {
             _userService = userService;
+            _ = CheckExistingSessionAsync();
+        }
+
+        private async Task CheckExistingSessionAsync()
+        {
+            bool hasSession = await _userService.TryRestoreSessionAsync();
+
+            if (hasSession)
+            {
+                await Task.Delay(100);
+                await Shell.Current.GoToAsync("mainpage");
+            }
         }
 
         [RelayCommand]
@@ -65,9 +77,6 @@ namespace Location_guessing_game.ViewModels
                 await Shell.Current.GoToAsync("mainpage");
 
             }
-
-
-
         }
 
         [RelayCommand]

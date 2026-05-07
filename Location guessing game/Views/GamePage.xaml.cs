@@ -126,6 +126,8 @@ public partial class GamePage : ContentPage
             NextButton.Text = "Finish";
             NextButton.Clicked -= NextButton_Clicked;
             NextButton.Clicked += async (s, args) => await _viewModel.GoBackCommand.ExecuteAsync(null);
+            FromLocationLabel.IsVisible = false;
+            PointsLabel.Text = "POINTS TOTAL";
         }
 
 

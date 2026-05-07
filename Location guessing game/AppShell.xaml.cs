@@ -11,6 +11,7 @@ namespace Location_guessing_game
             Routing.RegisterRoute("mainpage", typeof(MainPage));
             Routing.RegisterRoute("gamepage", typeof(GamePage));
             Routing.RegisterRoute("selectlistpage", typeof(ListSelectPage));
+            Routing.RegisterRoute("leaderboardpage", typeof(ListLeaderboardPage));
             // Everything except the one defined in AppShell.xaml
         }
     }

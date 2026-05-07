@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Location_guessing_game.Views.ListSelectPage"
              xmlns:viewmodels="clr-namespace:Location_guessing_game.ViewModels"
-             Title="ListSelectPage">
+             Title="List selection">
     <Grid RowDefinitions="Auto, *, Auto" Padding="20">
 
         <Label Grid.Row="0" 
