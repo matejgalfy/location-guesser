@@ -35,7 +35,7 @@ namespace LocationGuesser.Models.Services
                 .GroupBy(s => s.UserId)
                 .Select(group => group
                     .OrderByDescending(s => s.Score)
-                    .First())
+                    .FirstOrDefault())
                 .Select(s => new UserImageListScoreDTO
                 {
                     UserName = s.User.Name,

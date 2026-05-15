@@ -28,7 +28,15 @@ namespace LocationGuesser.Models.Services
 
             db.Users.Add(newUser);
             await db.SaveChangesAsync();
-            return (true, String.Empty);
+
+            CurrentUser = new UserDTO
+            {
+                Id = newUser.Id,
+                Name = newUser.Name
+            };
+            await SecureStorage.Default.SetAsync("user_session", newUser.Id.ToString());
+
+            return (true, string.Empty);
         }
 
         public async Task<bool> CheckCredentialsAsync(UserDTO userDto)
