@@ -1,8 +1,5 @@
 using LocationGuesser.Helpers;
 using LocationGuesser.ViewModels;
-using Mapsui.Projections;
-using Mapsui.UI;
-using Mapsui.UI.Maui;
 
 namespace LocationGuesser.Views;
 
@@ -26,11 +23,16 @@ public partial class GamePage : ContentPage
         Map.Map.Layers.Add(Mapsui.Tiling.OpenStreetMap.CreateTileLayer());
         Map.Map.Layers.Add(_mapManager.PinLayer);
 
-        Map.Map.Tapped += OnMapTapped; // TODO spytat sa na nullabilitu sendera
+        Map.Map.Tapped += OnMapTapped;
     }
 
-    private void OnMapTapped(object sender, Mapsui.MapEventArgs e)
+    private void OnMapTapped(object? sender, Mapsui.MapEventArgs e)
     {
+        if (Map.Map.Extent?.Contains(e.WorldPosition) == false)
+        {
+            return;
+        }
+
         if (!_viewModel.IsGuessed)
         {
             _lastGuessX = e.WorldPosition.X;
@@ -38,7 +40,7 @@ public partial class GamePage : ContentPage
 
             _mapManager.PlaceGuessPin(_lastGuessX, _lastGuessY);
 
-            if (Application.Current.Resources.TryGetValue("NormalButton", out var style))
+            if (Application.Current != null && Application.Current.Resources.TryGetValue("NormalButton", out var style))
             {
                 GuessButton.Style = style as Style;
             }
@@ -98,7 +100,7 @@ public partial class GamePage : ContentPage
         }
     }
 
-    private void NextButton_Clicked(object sender, EventArgs e)
+    private void NextButton_Clicked(object? sender, EventArgs e)
     {
         NextButton.IsEnabled = false;
         bool hasNextRound = _viewModel.TryLoadNextRound();
@@ -117,7 +119,8 @@ public partial class GamePage : ContentPage
             ScorePanel.IsVisible = false;
             GuessButton.IsVisible = true;
             GuessButton.WidthRequest = 200;
-            GuessButton.Style = (Style)Application.Current.Resources["GreyedOutButton"];
+            if (Application.Current is not null)
+                GuessButton.Style = (Style)Application.Current.Resources["GreyedOutButton"];
             ChangeMapSizeButton.IsVisible = true;
 
             _mapManager.ClearMap(Map.Map);

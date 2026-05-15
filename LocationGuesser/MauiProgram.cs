@@ -20,7 +20,7 @@ namespace LocationGuesser
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddSingleton<ListService>();
+            builder.Services.AddSingleton<ImageListService>();
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddTransient<ScoreService>();
             builder.Services.AddTransient<MainViewModel>();

@@ -1,8 +1,8 @@
 ﻿namespace LocationGuesser.Models
 {
-    public class UserListScoreDTO
+    public class UserImageListScoreDTO
     {
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
         public int Score { get; set; }
         public DateTime PlayedAt { get; set; }
     }

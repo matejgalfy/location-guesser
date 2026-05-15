@@ -6,7 +6,7 @@ namespace LocationGuesser.Models.Services
 {
     public class UserService
     {
-        public UserDTO CurrentUser { get; private set; }
+        public UserDTO? CurrentUser { get; private set; }
 
         public async Task<(bool IsSuccess, string ErrorMessage)> CreateUserAsync(UserDTO user)
         {
@@ -63,7 +63,7 @@ namespace LocationGuesser.Models.Services
 
         public async Task<bool> TryRestoreSessionAsync()
         {
-            string savedId = await SecureStorage.Default.GetAsync("user_session");
+            string? savedId = await SecureStorage.Default.GetAsync("user_session");
             if (savedId != null)
             {
                 CurrentUser = new UserDTO { Id = int.Parse(savedId) };

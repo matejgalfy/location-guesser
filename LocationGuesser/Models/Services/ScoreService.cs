@@ -10,7 +10,7 @@ namespace LocationGuesser.Models.Services
         {
             await using var db = new GameDbContext();
 
-            var entity = new UserListScore
+            var entity = new UserImageListScore
             {
                 UserId = scoreDto.UserId,
                 ImageListId = scoreDto.ImageListId,
@@ -22,7 +22,7 @@ namespace LocationGuesser.Models.Services
             await db.SaveChangesAsync();
         }
 
-        public async Task<List<UserListScoreDTO>> GetLeaderboardAsync(int imageListId)
+        public async Task<List<UserImageListScoreDTO>> GetLeaderboardAsync(int imageListId)
         {
             await using var db = new GameDbContext();
 
@@ -35,8 +35,8 @@ namespace LocationGuesser.Models.Services
                 .GroupBy(s => s.UserId)
                 .Select(group => group
                     .OrderByDescending(s => s.Score)
-                    .FirstOrDefault())
-                .Select(s => new UserListScoreDTO
+                    .First())
+                .Select(s => new UserImageListScoreDTO
                 {
                     UserName = s.User.Name,
                     Score = s.Score,

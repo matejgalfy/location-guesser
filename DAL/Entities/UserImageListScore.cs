@@ -1,6 +1,6 @@
 ﻿namespace DAL.Entities
 {
-    public class UserListScore
+    public class UserImageListScore
     {
         public int Id { get; set; }
 

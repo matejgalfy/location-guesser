@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LocationGuesser.Models.Services
 {
-    public class ListService
+    public class ImageListService
     {
-        public ImageListDTO SelectedListDto { get; set; }
+        public ImageListDTO? SelectedListDto { get; set; }
 
         public async Task<List<ImageListDTO>> GetAllListsAsync()
         {
@@ -26,8 +26,6 @@ namespace LocationGuesser.Models.Services
                     Images = new List<ImageLocationDTO>()
                 };
 
-                if (list.Images != null)
-                {
                     foreach (var img in list.Images)
                     {
                         dto.Images.Add(new ImageLocationDTO
@@ -38,7 +36,6 @@ namespace LocationGuesser.Models.Services
                             Longitude = img.Longitude
                         });
                     }
-                }
 
                 dtoList.Add(dto);
             }

@@ -8,29 +8,29 @@ namespace LocationGuesser.ViewModels
     public partial class ListLeaderboardViewModel : ObservableObject
     {
         private readonly ScoreService _scoreService;
-        private readonly ListService _listService;
+        private readonly ImageListService _imageListService;
 
         [ObservableProperty]
-        private ObservableCollection<UserListScoreDTO> _leaderboard;
+        public partial ObservableCollection<UserImageListScoreDTO> Leaderboard { get; set; }
 
         [ObservableProperty]
-        private string _listName;
+        public partial string ListName { get; set; }
 
-        public ListLeaderboardViewModel(ScoreService scoreService, ListService listService)
+        public ListLeaderboardViewModel(ScoreService scoreService, ImageListService imageListService)
         {
             _scoreService = scoreService;
-            _listService = listService;
-            Leaderboard = new ObservableCollection<UserListScoreDTO>();
+            _imageListService = imageListService;
+            Leaderboard = new ObservableCollection<UserImageListScoreDTO>();
 
-            ListName = _listService.SelectedListDto?.Name ?? "Leaderboard";
+            ListName = _imageListService.SelectedListDto?.Name ?? "Leaderboard";
         }
 
         public async Task LoadLeaderboardAsync()
         {
-            if (_listService.SelectedListDto == null) 
+            if (_imageListService.SelectedListDto == null) 
                 return;
 
-            var scores = await _scoreService.GetLeaderboardAsync(_listService.SelectedListDto.Id);
+            var scores = await _scoreService.GetLeaderboardAsync(_imageListService.SelectedListDto.Id);
 
             Leaderboard.Clear();
             foreach (var score in scores)

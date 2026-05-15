@@ -7,15 +7,14 @@ namespace LocationGuesser.ViewModels;
 
 public partial class GameViewModel : ObservableObject
 {
-    private readonly ListService _listService;
+    private readonly ImageListService _imageListService;
     private readonly ScoreService _scoreService;
     private readonly UserService _userService;
 
     private int _currentImageIndex = 0;
     private int _totalScore = 0;
 
-    [ObservableProperty]
-    public partial ImageLocationDTO CurrentImage { get; set; }
+    [ObservableProperty] public partial ImageLocationDTO CurrentImage { get; set; } = new();
 
     [ObservableProperty]
     public partial bool HasPlacedPin { get; set; }
@@ -24,14 +23,14 @@ public partial class GameViewModel : ObservableObject
     public partial bool IsGuessed { get; set; }
 
     [ObservableProperty]
-    public partial string DistanceMessage { get; set; } = String.Empty;
+    public partial string DistanceMessage { get; set; } = string.Empty;
 
     [ObservableProperty]
-    public partial string ScoreMessage { get; set; } = String.Empty;
+    public partial string ScoreMessage { get; set; } = string.Empty;
 
-    public GameViewModel(ListService listService, ScoreService scoreService, UserService userService)
+    public GameViewModel(ImageListService imageListService, ScoreService scoreService, UserService userService)
     {
-        _listService = listService;
+        _imageListService = imageListService;
         _scoreService = scoreService;
         _userService = userService;
         StartGame();
@@ -45,9 +44,10 @@ public partial class GameViewModel : ObservableObject
 
     private void LoadImage()
     {
-        if (_currentImageIndex < _listService.SelectedListDto.Images.Count)
+        if (_imageListService.SelectedListDto is not null &&
+            _currentImageIndex < _imageListService.SelectedListDto.Images.Count)
         {
-            CurrentImage = _listService.SelectedListDto.Images[_currentImageIndex];
+            CurrentImage = _imageListService.SelectedListDto.Images[_currentImageIndex];
             HasPlacedPin = false;
             IsGuessed = false;
         }
@@ -57,14 +57,14 @@ public partial class GameViewModel : ObservableObject
     {
         IsGuessed = true;
 
-        Location guessLocation = new Location(guessLat, guessLon);
-        Location realLocation = new Location(CurrentImage.Latitude, CurrentImage.Longitude);
+        var guessLocation = new Location(guessLat, guessLon);
+        var realLocation = new Location(CurrentImage.Latitude, CurrentImage.Longitude);
 
-        double distanceKm = Location.CalculateDistance(guessLocation, realLocation, DistanceUnits.Kilometers);
+        var distanceKm = Location.CalculateDistance(guessLocation, realLocation, DistanceUnits.Kilometers);
 
         DistanceMessage = $"{Math.Round(distanceKm)} km";
 
-        int score = 5000 - (int)(distanceKm * 2);
+        var score = 5000 - (int)(distanceKm * 2);
         if (score < 0) 
             score = 0;
         ScoreMessage = score.ToString();
@@ -75,7 +75,8 @@ public partial class GameViewModel : ObservableObject
     {
         ++_currentImageIndex;
 
-        if (_currentImageIndex < _listService.SelectedListDto.Images.Count)
+        if (_imageListService.SelectedListDto is not null && 
+            _currentImageIndex < _imageListService.SelectedListDto.Images.Count)
         {
             LoadImage();
             return true;
@@ -83,12 +84,17 @@ public partial class GameViewModel : ObservableObject
 
         DistanceMessage = "End of game";
         ScoreMessage = _totalScore.ToString();
-        _ = _scoreService.SaveScoreAsync(new SaveScoreDTO()
+
+        if (_imageListService.SelectedListDto is not null && _userService.CurrentUser is not null)
         {
-            ImageListId = _listService.SelectedListDto.Id,
-            Score = _totalScore,
-            UserId = _userService.CurrentUser.Id
-        });
+            _ = _scoreService.SaveScoreAsync(new SaveScoreDTO
+            {
+                ImageListId = _imageListService.SelectedListDto.Id,
+                Score = _totalScore,
+                UserId = _userService.CurrentUser.Id
+            });
+        }
+
         return false;
     }
 

@@ -10,14 +10,14 @@ namespace LocationGuesser.ViewModels
         [ObservableProperty]
         public partial ImageListDTO? SelectedImageList { get; set; }
 
-        private readonly ListService _listService;
+        private readonly ImageListService _imageListService;
         private readonly UserService _userService;
 
-        public MainViewModel(ListService listService, UserService userService)
+        public MainViewModel(ImageListService imageListService, UserService userService)
         {
-            _listService = listService;
+            _imageListService = imageListService;
             _userService = userService;
-            SelectedImageList = listService.SelectedListDto;
+            SelectedImageList = imageListService.SelectedListDto;
         }
 
         [RelayCommand]
@@ -25,7 +25,7 @@ namespace LocationGuesser.ViewModels
         {
             if (SelectedImageList is not null)
             {
-                _listService.SelectedListDto = SelectedImageList;
+                _imageListService.SelectedListDto = SelectedImageList;
                 await Shell.Current.GoToAsync("gamepage");
             }
             else
@@ -39,7 +39,7 @@ namespace LocationGuesser.ViewModels
         {
             _userService.Logout();
             SelectedImageList = null;
-            _listService.SelectedListDto = null;
+            _imageListService.SelectedListDto = null;
             await Shell.Current.GoToAsync("//loginpage");
         }
 

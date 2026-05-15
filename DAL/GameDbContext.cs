@@ -8,7 +8,7 @@ namespace DAL
         public DbSet<ImageList> ImageLists { get; set; }
         public DbSet<ImageLocation> ImageLocations { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserListScore> UserListScores { get; set; }
+        public DbSet<UserImageListScore> UserListScores { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

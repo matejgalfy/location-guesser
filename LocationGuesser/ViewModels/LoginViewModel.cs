@@ -9,13 +9,11 @@ namespace LocationGuesser.ViewModels
     {
         private readonly UserService _userService;
 
-        [ObservableProperty]
-        public partial string Name { get; set; }
+        [ObservableProperty] public partial string Name { get; set; } = string.Empty;
 
-        [ObservableProperty] public partial string Password { get; set; } = String.Empty;
+        [ObservableProperty] public partial string Password { get; set; } = string.Empty;
 
-        [ObservableProperty]
-        public partial string ErrorMessage { get; set; }
+        [ObservableProperty] public partial string ErrorMessage { get; set; } = string.Empty;
 
         [ObservableProperty]
         public partial bool HasError { get; set; }
@@ -42,9 +40,7 @@ namespace LocationGuesser.ViewModels
         {
             HasError = false;
 
-            // AI saying Password can be null, if the user types
-            // something and then deletes it
-            if (Password is null || Password.Length < 8)
+            if (Password.Length < 8)
             {
                 HasError = true;
                 ErrorMessage = "Password must be at least 8 characters!";

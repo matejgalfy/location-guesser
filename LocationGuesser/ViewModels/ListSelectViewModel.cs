@@ -8,21 +8,20 @@ namespace LocationGuesser.ViewModels
 {
     public partial class ListSelectViewModel : ObservableObject
     {
-        private readonly ListService _listService;
+        private readonly ImageListService _imageListService;
         public ObservableCollection<ImageListDTO> ImageLists { get; set; } = [];
 
-        [ObservableProperty]
-        public partial ImageListDTO SelectedList { get; set; }
+        [ObservableProperty] public partial ImageListDTO SelectedList { get; set; } = new();
 
-        public ListSelectViewModel(ListService listService)
+        public ListSelectViewModel(ImageListService imageListService)
         {
-            _listService = listService;
+            _imageListService = imageListService;
             _ = LoadListsAsync();
         }
 
         private async Task LoadListsAsync()
         {
-            var lists = await _listService.GetAllListsAsync();
+            var lists = await _imageListService.GetAllListsAsync();
             foreach (var list in lists)
             {
                 ImageLists.Add(list);
@@ -32,7 +31,7 @@ namespace LocationGuesser.ViewModels
         [RelayCommand]
         async Task GoToLeaderboardAsync(ImageListDTO clickedList)
         {
-            _listService.SelectedListDto = clickedList;
+            _imageListService.SelectedListDto = clickedList;
 
             await Shell.Current.GoToAsync("leaderboardpage");
         }
@@ -46,7 +45,7 @@ namespace LocationGuesser.ViewModels
         [RelayCommand]
         public async Task ListSelectedAsync()
         {
-            _listService.SelectedListDto = SelectedList;
+            _imageListService.SelectedListDto = SelectedList;
             await Shell.Current.GoToAsync("mainpage");
         }
     }
