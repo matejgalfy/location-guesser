@@ -14,9 +14,8 @@ namespace DAL
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            Path.Join(path, "game.db");
-
-            options.UseSqlite("Data Source=game.db");
+            var dbPath = Path.Join(path, "game.db");
+            options.UseSqlite("Data Source={dbPath}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
