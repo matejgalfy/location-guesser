@@ -1,15 +1,11 @@
-﻿using Mapsui;
-using Mapsui.Layers;
+﻿using Mapsui.Layers;
 using Mapsui.Nts;
 using Mapsui.Styles;
 using NetTopologySuite.Geometries;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Brush = Mapsui.Styles.Brush;
 using Color = Mapsui.Styles.Color;
 
-namespace Location_guessing_game.Helpers
+namespace LocationGuesser.Helpers
 {
     public class MapManager
     {
@@ -49,11 +45,11 @@ namespace Location_guessing_game.Helpers
 
             var lineFeature = new GeometryFeature
             {
-                Geometry = new LineString(new[]
-                {
+                Geometry = new LineString(
+                [
                     new Coordinate(guessX, guessY),
                     new Coordinate(realCoords.x, realCoords.y)
-                })
+                ])
             };
             lineFeature.Styles.Add(new VectorStyle { Line = new Pen(Color.Black, 3) });
             _features.Add(lineFeature);

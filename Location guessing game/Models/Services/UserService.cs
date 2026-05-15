@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DAL;
+﻿using DAL;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Location_guessing_game.Models.Services
+namespace LocationGuesser.Models.Services
 {
     public class UserService
     {
@@ -25,7 +22,6 @@ namespace Location_guessing_game.Models.Services
 
             var newUser = new User
             {
-                // Id should be auto generated
                 Name = user.Name,
                 PasswordHash = hashedPassword
             };

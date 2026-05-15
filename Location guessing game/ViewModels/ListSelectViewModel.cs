@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Location_guessing_game.Models;
-using Location_guessing_game.Models.Services;
+using LocationGuesser.Models;
+using LocationGuesser.Models.Services;
 
-namespace Location_guessing_game.ViewModels
+namespace LocationGuesser.ViewModels
 {
     public partial class ListSelectViewModel : ObservableObject
     {
@@ -35,8 +32,6 @@ namespace Location_guessing_game.ViewModels
         [RelayCommand]
         async Task GoToLeaderboardAsync(ImageListDTO clickedList)
         {
-            // Hopefully clickedList can't be null
-
             _listService.SelectedListDto = clickedList;
 
             await Shell.Current.GoToAsync("leaderboardpage");

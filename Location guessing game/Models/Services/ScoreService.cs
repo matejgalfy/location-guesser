@@ -1,11 +1,8 @@
 ﻿using DAL;
 using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 
-namespace Location_guessing_game.Models.Services
+namespace LocationGuesser.Models.Services
 {
     public class ScoreService
     {

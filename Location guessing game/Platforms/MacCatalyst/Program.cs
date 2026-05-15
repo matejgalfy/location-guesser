@@ -1,7 +1,6 @@
-﻿using ObjCRuntime;
-using UIKit;
+﻿using UIKit;
 
-namespace Location_guessing_game
+namespace LocationGuesser
 {
     public class Program
     {

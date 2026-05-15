@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DAL.Entities;
+﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
@@ -17,7 +14,7 @@ namespace DAL
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            string dbPath = Path.Join(path, "game.db");
+            Path.Join(path, "game.db");
 
             options.UseSqlite("Data Source=game.db");
         }

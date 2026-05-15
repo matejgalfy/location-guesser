@@ -1,11 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Location_guessing_game.Models;
-using Microsoft.Maui.Devices.Sensors;
-using System.Threading.Tasks;
-using Location_guessing_game.Models.Services;
+using LocationGuesser.Models;
+using LocationGuesser.Models.Services;
 
-namespace Location_guessing_game.ViewModels;
+namespace LocationGuesser.ViewModels;
 
 public partial class GameViewModel : ObservableObject
 {
@@ -14,7 +12,6 @@ public partial class GameViewModel : ObservableObject
     private readonly UserService _userService;
 
     private int _currentImageIndex = 0;
-    private bool _finished = false;
     private int _totalScore = 0;
 
     [ObservableProperty]
@@ -27,10 +24,10 @@ public partial class GameViewModel : ObservableObject
     public partial bool IsGuessed { get; set; }
 
     [ObservableProperty]
-    public partial string DistanceMessage { get; set; }
+    public partial string DistanceMessage { get; set; } = String.Empty;
 
     [ObservableProperty]
-    public partial string ScoreMessage { get; set; }
+    public partial string ScoreMessage { get; set; } = String.Empty;
 
     public GameViewModel(ListService listService, ScoreService scoreService, UserService userService)
     {
@@ -86,7 +83,7 @@ public partial class GameViewModel : ObservableObject
 
         DistanceMessage = "End of game";
         ScoreMessage = _totalScore.ToString();
-        _scoreService.SaveScoreAsync(new SaveScoreDTO()
+        _ = _scoreService.SaveScoreAsync(new SaveScoreDTO()
         {
             ImageListId = _listService.SelectedListDto.Id,
             Score = _totalScore,

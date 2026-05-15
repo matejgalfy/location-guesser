@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Location_guessing_game.Views.GamePage"
-             Title="GamePage"
+             x:Class="LocationGuesser.Views.GamePage"
+             Title=""
              xmlns:mapsui="clr-namespace:Mapsui.UI.Maui;assembly=Mapsui.UI.Maui">
 
     <Grid RowDefinitions="Auto, *">
-        <Button Grid.Row="0" 
-                Text="Go Back" 
-                Command="{Binding GoBackCommand}" 
-                HorizontalOptions="Center" />
 
         <Grid Grid.Row="1">
             <Image Source="{Binding CurrentImage.ImageSource}" Aspect="AspectFill" />

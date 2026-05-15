@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Location_guessing_game.Models;
-using Location_guessing_game.Models.Services;
+using LocationGuesser.Models;
+using LocationGuesser.Models.Services;
 
-namespace Location_guessing_game.ViewModels
+namespace LocationGuesser.ViewModels
 {
     public partial class RegisterViewModel : ObservableObject
     {

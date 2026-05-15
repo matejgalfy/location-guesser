@@ -1,6 +1,6 @@
-﻿using Location_guessing_game.Views;
+﻿using LocationGuesser.Views;
 
-namespace Location_guessing_game
+namespace LocationGuesser
 {
     public partial class AppShell : Shell
     {

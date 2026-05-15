@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="Location_guessing_game.AppShell"
+    x:Class="LocationGuesser.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Location_guessing_game"
-    xmlns:views="clr-namespace:Location_guessing_game.Views"
-    Title="Location_guessing_game">
+    xmlns:local="clr-namespace:LocationGuesser"
+    xmlns:views="clr-namespace:LocationGuesser.Views"
+    Title="LocationGuesser">
 
     <ShellContent
         Title="Login Page"

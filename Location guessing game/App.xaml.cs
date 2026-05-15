@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Location_guessing_game
+﻿namespace LocationGuesser
 {
     public partial class App : Application
     {

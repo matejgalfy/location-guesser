@@ -1,7 +1,7 @@
 ﻿using DAL;
 using Microsoft.EntityFrameworkCore;
 
-namespace Location_guessing_game.Models.Services
+namespace LocationGuesser.Models.Services
 {
     public class ListService
     {

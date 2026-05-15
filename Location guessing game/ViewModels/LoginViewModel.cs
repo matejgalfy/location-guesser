@@ -1,12 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Location_guessing_game.Models;
-using Location_guessing_game.Models.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using LocationGuesser.Models;
+using LocationGuesser.Models.Services;
 
-namespace Location_guessing_game.ViewModels
+namespace LocationGuesser.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
@@ -75,7 +72,6 @@ namespace Location_guessing_game.ViewModels
             else
             {
                 await Shell.Current.GoToAsync("mainpage");
-
             }
         }
 

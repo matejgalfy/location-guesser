@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace Location_guessing_game
+namespace LocationGuesser
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

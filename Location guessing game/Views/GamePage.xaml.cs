@@ -1,9 +1,10 @@
-using Location_guessing_game.Helpers;
-using Location_guessing_game.ViewModels;
-using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
+using LocationGuesser.Helpers;
+using LocationGuesser.ViewModels;
+using Mapsui.Projections;
+using Mapsui.UI;
+using Mapsui.UI.Maui;
 
-namespace Location_guessing_game.Views;
+namespace LocationGuesser.Views;
 
 public partial class GamePage : ContentPage
 {
@@ -99,6 +100,7 @@ public partial class GamePage : ContentPage
 
     private void NextButton_Clicked(object sender, EventArgs e)
     {
+        NextButton.IsEnabled = false;
         bool hasNextRound = _viewModel.TryLoadNextRound();
 
         if (hasNextRound)
@@ -130,6 +132,7 @@ public partial class GamePage : ContentPage
             PointsLabel.Text = "POINTS TOTAL";
         }
 
+        NextButton.IsEnabled = true;
 
     }
 }

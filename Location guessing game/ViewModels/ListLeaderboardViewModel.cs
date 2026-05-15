@@ -1,12 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Location_guessing_game.Models;
-using Location_guessing_game.Models.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using LocationGuesser.Models;
+using LocationGuesser.Models.Services;
 
-namespace Location_guessing_game.ViewModels
+namespace LocationGuesser.ViewModels
 {
     public partial class ListLeaderboardViewModel : ObservableObject
     {

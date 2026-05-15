@@ -1,6 +1,6 @@
-using Location_guessing_game.ViewModels;
+using LocationGuesser.ViewModels;
 
-namespace Location_guessing_game.Views;
+namespace LocationGuesser.Views;
 
 public partial class MainPage : ContentPage
 {

@@ -1,11 +1,11 @@
 ﻿using DAL;
-using Location_guessing_game.Models.Services;
-using Location_guessing_game.ViewModels;
-using Location_guessing_game.Views;
+using LocationGuesser.Models.Services;
+using LocationGuesser.ViewModels;
+using LocationGuesser.Views;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
-namespace Location_guessing_game
+namespace LocationGuesser
 {
     public static class MauiProgram
     {

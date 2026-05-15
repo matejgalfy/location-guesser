@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Location_guessing_game.Views.ListSelectPage"
-             xmlns:viewmodels="clr-namespace:Location_guessing_game.ViewModels"
+             x:Class="LocationGuesser.Views.ListSelectPage"
+             xmlns:viewmodels="clr-namespace:LocationGuesser.ViewModels"
              Title="List selection">
     <Grid RowDefinitions="Auto, *, Auto" Padding="20">
 
