@@ -20,6 +20,8 @@ The project was written in C# using the .NET MAUI framework. Data is stored loca
     <td align="center"><img src="screenshots/set_selection.png" width="250" alt="List Select Page"></td>
     <td align="center"><img src="screenshots/round_page.png" width="250" alt="Round Page"></td>
   </tr>
+</table>
+<table>
   <tr>
     <td align="center"><b>Distance Reveal</b></td>
     <td align="center"><b>Leaderboard</b></td>
