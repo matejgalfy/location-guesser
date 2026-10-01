@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LocationGuesser.Views.ListSelectPage"
              xmlns:viewmodels="clr-namespace:LocationGuesser.ViewModels"
-             Title="List selection">
+             Title="">
     <Grid RowDefinitions="Auto, *, Auto" Padding="20">
 
         <Label Grid.Row="0" 
@@ -23,21 +23,22 @@
                 <DataTemplate>
                     <Border StrokeShape="RoundRectangle 10" 
                             BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}"
-                            StrokeThickness="0"
+                            Stroke="{StaticResource Primary}"
+                            StrokeThickness="2"
                             Padding="20" 
                             Margin="0,0,0,15">
 
-                        <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+                        <Grid VerticalOptions="Center">
 
                             <Label 
-                                Grid.Column="0"
                                 Text="{Binding Name}" 
                                 FontSize="18" 
                                 FontAttributes="Bold" 
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"/>
 
-                            <Button Grid.Column="1" 
+                            <Button HorizontalOptions="End"
+                                    VerticalOptions="Center"
                                     Text="Leaderboard"
                                     BackgroundColor="{StaticResource Secondary}"
                                     TextColor="{StaticResource Primary}"
