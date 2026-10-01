@@ -1,7 +1,7 @@
 # Location Guesser
 
 A .NET MAUI application where users guess locations on a map based on a displayed image. 
-It was as a project for the PB178 Introduction to Development in C#/.NET course at the Faculty of Informatics of Masaryk University. 
+It made was as a project for the 'PB178 - Introduction to Development in C#/.NET course' at the Faculty of Informatics of Masaryk University. 
 
 ## Tech Stack
 
