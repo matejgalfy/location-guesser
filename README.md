@@ -5,7 +5,7 @@ It made was as a project for the 'PB178 - Introduction to Development in C#/.NET
 
 ## Tech Stack
 
-The project was written in C# using the .NET MAUI framework
+The project was written in C# using the .NET MAUI framework. Data is stored locally on the device using a SQLite database.
 
 ## Screenshots
 
@@ -23,12 +23,10 @@ The project was written in C# using the .NET MAUI framework
   <tr>
     <td align="center"><b>Distance Reveal</b></td>
     <td align="center"><b>Leaderboard</b></td>
-    <td align="center"></td>
   </tr>
   <tr>
     <td align="center"><img src="screenshots/distance_reveal.png" width="250" alt="Distance Reveal"></td>
     <td align="center"><img src="screenshots/best_results.png" width="250" alt="Leaderboard"></td>
-    <td align="center"></td>
   </tr>
 </table>
 
