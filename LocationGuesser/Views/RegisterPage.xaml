@@ -6,7 +6,7 @@
 
     <VerticalStackLayout Spacing="15" Padding="30" VerticalOptions="Center">
 
-        <Label Text="Create an account" 
+        <Label Text="Create a LocationGuesser account" 
                FontSize="24" 
                FontAttributes="Bold" 
                HorizontalOptions="Center" 
