@@ -9,6 +9,28 @@ The project was written in C# using the .NET MAUI framework
 
 ## Screenshots
 
+<table>
+  <tr>
+    <td align="center"><b>Login Page</b></td>
+    <td align="center"><b>List Select Page</b></td>
+    <td align="center"><b>Round Page</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/login_screen.png" width="250" alt="Login Page"></td>
+    <td align="center"><img src="screenshots/set_selection.png" width="250" alt="List Select Page"></td>
+    <td align="center"><img src="screenshots/round_page.png" width="250" alt="Round Page"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Distance Reveal</b></td>
+    <td align="center"><b>Leaderboard</b></td>
+    <td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/distance_reveal.png" width="250" alt="Distance Reveal"></td>
+    <td align="center"><img src="screenshots/best_results.png" width="250" alt="Leaderboard"></td>
+    <td align="center"></td>
+  </tr>
+</table>
 
 ## Requirements
 * **Internet Connection (Wi-Fi/Data):** The app downloads some images for the puzzles directly from the internet; a connection is required for proper functionality.
